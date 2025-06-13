@@ -15,7 +15,7 @@ function App() {
     <>
              
                <div className="App">
-                <Analytics/>
+                
       <Navbar />
       <main>
         <Hero />
@@ -27,6 +27,7 @@ function App() {
       </main>
       <Footer />
       <ScrollToTop /> {/* Optional */}
+      <Analytics/>
     </div>
 
     </>
