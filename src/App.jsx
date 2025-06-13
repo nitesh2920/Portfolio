@@ -12,8 +12,9 @@ import { Analytics } from "@vercel/analytics/next"
 
 function App() {
   return (
-    <div className="App">
-        <Analytics/>
+    <>
+              <Analytics/>
+               <div className="App">
       <Navbar />
       <main>
         <Hero />
@@ -26,6 +27,9 @@ function App() {
       <Footer />
       <ScrollToTop /> {/* Optional */}
     </div>
+
+    </>
+   
   );
 }
 
