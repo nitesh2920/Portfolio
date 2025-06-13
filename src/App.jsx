@@ -8,13 +8,14 @@ import Experience from './components/Experience';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import ScrollToTop from './components/ScrollToTop'; // Optional
-import { Analytics } from "@vercel/analytics/react"
+import { Analytics } from '@vercel/analytics/react';
 
 function App() {
   return (
     <>
-              <Analytics/>
+             
                <div className="App">
+                <Analytics/>
       <Navbar />
       <main>
         <Hero />
