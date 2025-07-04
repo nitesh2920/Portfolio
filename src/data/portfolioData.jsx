@@ -10,8 +10,7 @@ import {
   FaCode,
   FaHtml5,
   FaCss3Alt,
-  FaWordpress,
-  FaFigma
+  FaCodepen 
 } from "react-icons/fa"; // Example icons
 import {
   SiExpress,
@@ -22,8 +21,15 @@ import {
   SiTypescript,
   SiCplusplus,
   SiPython,
-  SiPostman
+  SiPostman,
+  SiReact,
+   SiBootstrap,
+    SiLeetcode 
+
 } from "react-icons/si"; // More specific tech icons
+
+import { RiNextjsFill } from "react-icons/ri";
+
 
 export const personalInfo = {
   name: "Nitesh Tiwari",
@@ -105,35 +111,48 @@ export const projects = [
 ];
 
 export const skills = {
+  // programmingLanguages: [
+  //   { name: "C/C++", icon: <SiCplusplus /> },
+  //   { name: "JavaScript", icon: <SiJavascript /> },
+  //   { name: "TypeScript", icon: <SiTypescript /> },
+  //   { name: "Python", icon: <SiPython /> }
+  // ],
+
+  // frontendDevelopment: [
+  //   { name: "HTML5", icon: <FaHtml5 /> },
+  //   { name: "CSS3", icon: <FaCss3Alt /> },
+  //   {name: "React JS", icon: <SiReact /> },
+  //   { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+  //   { name: "Bootstrap", icon: <SiBootstrap /> }
+  // ], 
+
   languages: [
     { name: "C/C++", icon: <SiCplusplus /> },
     { name: "JavaScript", icon: <SiJavascript /> },
-    { name: "TypeScript", icon: <SiTypescript /> }, // Add if you use it
-    { name: "HTML5", icon: <FaHtml5 /> },
-    { name: "CSS3", icon: <FaCss3Alt /> },
+    { name: "TypeScript", icon: <SiTypescript /> },
     { name: "SQL", icon: <FaDatabase /> }
   ],
   frameworksAndLibraries: [
     { name: "React JS", icon: <FaReact /> },
     { name: "Node JS", icon: <FaNodeJs /> },
     { name: "Express JS", icon: <SiExpress /> },
-    { name: "Tailwind CSS", icon: <SiTailwindcss /> }, // You are using it!
-    // { name: "Wordpress", icon: <FaWordpress /> },
+    { name: "Next JS", icon: <RiNextjsFill /> },
+    
+    { name: "Tailwind CSS", icon: <SiTailwindcss /> }, 
     { name: "Bootstrap", icon: <FaBootstrap /> }
   ],
+
   toolsAndPlatforms: [
-    { name: "MongoDB", icon: <SiMongodb /> },
     { name: "MongoDB", icon: <SiMongodb /> },
     { name: "Firebase", icon: <SiFirebase /> },
     { name: "Git & GitHub", icon: <FaGithub /> },
-    { name: "VS Code", icon: <FaCode /> }, // Or a more specific icon
-    { name: "Postman", icon: <SiPostman /> } // Placeholder icon
-    // { name: "Google Cloud Platform", icon: <FaCode /> }, // Placeholder icon
+    { name: "VS Code", icon: <FaCode /> }, 
+    { name: "Postman", icon: <SiPostman /> } 
   ],
+
   coreCompetencies: [
     "Problem Solving",
     "Presentations",
-    "Team Leadership",
     "Event Hosting",
     "Agile Methodologies"
   ]
@@ -161,6 +180,10 @@ export const leadershipAndInvolvement = [
 export const socialLinks = {
   linkedin: { url: personalInfo.linkedin, icon: <FaLinkedin size={24} /> },
   github: { url: personalInfo.github, icon: <FaGithub size={24} /> },
-  email: { url: `mailto:${personalInfo.email}`, icon: <FaEnvelope size={24} /> }
+  email: { url: `mailto:${personalInfo.email}`, icon: <FaEnvelope size={24} /> },
   // phone: { url: `tel:${personalInfo.phone}`, icon: <FaPhone size={24} /> }, // Optional
+  // leetcode: { url: "https://leetcode.com/nitesh2920/", icon: <SiLeetcode size={24} /> },
+  // codepen: { url: "https://codepen.io/nitesh2920", icon: <FaCodepen size={24} /> }
+
+
 };
