@@ -10,8 +10,8 @@ import {
   FaCode,
   FaHtml5,
   FaCss3Alt,
-  FaCodepen 
-} from "react-icons/fa"; // Example icons
+  FaCodepen
+} from "react-icons/fa"; 
 import {
   SiExpress,
   SiMongodb,
@@ -23,13 +23,11 @@ import {
   SiPython,
   SiPostman,
   SiReact,
-   SiBootstrap,
-    SiLeetcode 
-
+  SiBootstrap,
+  SiLeetcode
 } from "react-icons/si"; // More specific tech icons
 
 import { RiNextjsFill } from "react-icons/ri";
-
 
 export const personalInfo = {
   name: "Nitesh Tiwari",
@@ -64,8 +62,35 @@ export const education = [
 ];
 
 export const projects = [
+{
+  title: "Saas landing page",
+    tech: ["NextJS", "tailwindcss", "typescript","framer-motion"],
+    description:
+      " SaaS Landing Page is a modern, responsive landing page template built with Next.js, TypeScript, and Tailwind CSS. It features a clean design, smooth animations using Framer Motion, and is optimized for performance and SEO.",
+    date: "July 2025",
+    githubLink: "https://github.com/nitesh2920/Saas-Landing-Page", // Replace with actual link
+    liveLink: "https://fancy-landing-page.vercel.app/", // Replace with actual link if available
+    category: "Frontend",
+    icon: <RiNextjsFill size={24} className="text-accent-1" />
+
+},
+{
+  title: "AI Article Summarizer",
+    tech: ["NextJS", "tailwindcss", "typescript"],
+    description:
+    "AI Article Summarizer is a web application that uses AI to summarize long-form articles from URLs. Users can paste any article link and receive a concise, clean summary in seconds.",
+    date: "July 2025",
+    githubLink: "https://github.com/nitesh2920/AI-Article-Summarizer", // Replace with actual link
+    liveLink: "https://ai-article-summarize.vercel.app", // Replace with actual link if available
+    category: "Frontend",
+    icon: <RiNextjsFill size={24} className="text-accent-1" />
+
+},
+
+
+
   {
-    title: "snaptopdf",
+    title: "Snaptopdf",
     tech: ["React JS", "tailwindcss", "typescript"],
     description:
       "SnapToPdf is a mini web application built with React.js, TypeScript, and TailwindCSS that allows users to convert images to PDF quickly and easily.",
@@ -124,7 +149,7 @@ export const skills = {
   //   {name: "React JS", icon: <SiReact /> },
   //   { name: "Tailwind CSS", icon: <SiTailwindcss /> },
   //   { name: "Bootstrap", icon: <SiBootstrap /> }
-  // ], 
+  // ],
 
   languages: [
     { name: "C/C++", icon: <SiCplusplus /> },
@@ -137,8 +162,7 @@ export const skills = {
     { name: "Node JS", icon: <FaNodeJs /> },
     { name: "Express JS", icon: <SiExpress /> },
     { name: "Next JS", icon: <RiNextjsFill /> },
-    
-    { name: "Tailwind CSS", icon: <SiTailwindcss /> }, 
+    { name: "Tailwind CSS", icon: <SiTailwindcss /> },
     { name: "Bootstrap", icon: <FaBootstrap /> }
   ],
 
@@ -146,8 +170,8 @@ export const skills = {
     { name: "MongoDB", icon: <SiMongodb /> },
     { name: "Firebase", icon: <SiFirebase /> },
     { name: "Git & GitHub", icon: <FaGithub /> },
-    { name: "VS Code", icon: <FaCode /> }, 
-    { name: "Postman", icon: <SiPostman /> } 
+    { name: "VS Code", icon: <FaCode /> },
+    { name: "Postman", icon: <SiPostman /> }
   ],
 
   coreCompetencies: [
@@ -180,10 +204,8 @@ export const leadershipAndInvolvement = [
 export const socialLinks = {
   linkedin: { url: personalInfo.linkedin, icon: <FaLinkedin size={24} /> },
   github: { url: personalInfo.github, icon: <FaGithub size={24} /> },
-  email: { url: `mailto:${personalInfo.email}`, icon: <FaEnvelope size={24} /> },
+  email: { url: `mailto:${personalInfo.email}`, icon: <FaEnvelope size={24} /> }
   // phone: { url: `tel:${personalInfo.phone}`, icon: <FaPhone size={24} /> }, // Optional
   // leetcode: { url: "https://leetcode.com/nitesh2920/", icon: <SiLeetcode size={24} /> },
   // codepen: { url: "https://codepen.io/nitesh2920", icon: <FaCodepen size={24} /> }
-
-
 };

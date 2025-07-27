@@ -3,6 +3,7 @@ import SectionTitle from './SectionTitle';
 import { skills } from '../data/portfolioData.jsx';
 import { motion } from 'framer-motion';
 
+
 const skillCategoryVariants = {
   hidden: { opacity: 0, x: -50 },
   visible: { 

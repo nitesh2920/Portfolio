@@ -1,20 +1,20 @@
-import React from 'react';
-import SectionTitle from './SectionTitle';
-import { projects } from '../data/portfolioData.jsx';
-import { FaGithub, FaExternalLinkAlt } from 'react-icons/fa';
-import { motion } from 'framer-motion';
+import SectionTitle from "./SectionTitle";
+import { projects } from "../data/portfolioData.jsx";
+import { FaGithub, FaExternalLinkAlt } from "react-icons/fa";
+import { LinkPreview } from "./ui/link-preview.jsx";
+import { motion } from "framer-motion";
 
 const cardVariants = {
   hidden: { opacity: 0, scale: 0.9 },
-  visible: i => ({
+  visible: (i) => ({
     opacity: 1,
     scale: 1,
     transition: {
       delay: i * 0.1,
       duration: 0.5,
       ease: "easeOut"
-    },
-  }),
+    }
+  })
 };
 
 const ProjectCard = ({ project, index }) => {
@@ -31,45 +31,65 @@ const ProjectCard = ({ project, index }) => {
       {/* <img src={project.image || '/src/assets/project-bg-1.jpg'} alt={project.title} className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"/> */}
       <div className="p-6 flex flex-col flex-grow">
         <div className="flex justify-between items-start mb-2">
-          <h3 className="text-xl sm:text-2xl font-semibold text-accent-1 font-mono">{project.title}</h3>
+          <h3 className="text-xl sm:text-2xl font-semibold text-accent-1 font-mono">
+            {project.title}
+          </h3>
           {project.icon && <div className="text-accent-1">{project.icon}</div>}
         </div>
-        <p className="text-xs text-text-secondary font-mono mb-3">{project.date} | {project.category}</p>
-        <p className="text-sm text-text-secondary mb-4 flex-grow leading-relaxed">{project.description}</p>
-        
+        <p className="text-xs text-text-secondary font-mono mb-3">
+          {project.date} | {project.category}
+        </p>
+        <p className="text-sm text-text-secondary mb-4 flex-grow leading-relaxed">
+          {project.description}
+        </p>
+
         <div className="mb-4">
-          <h4 className="text-sm font-semibold text-text-primary mb-1 font-mono">Tech Stack:</h4>
+          <h4 className="text-sm font-semibold text-text-primary mb-1 font-mono">
+            Tech Stack:
+          </h4>
           <div className="flex flex-wrap gap-2">
             {project.tech.map((tech, i) => (
-              <span key={i} className="text-xs bg-primary-bg text-accent-1 px-2 py-1 rounded-full font-mono">
+              <span
+                key={i}
+                className="text-xs bg-primary-bg text-accent-1 px-2 py-1 rounded-full font-mono"
+              >
                 {tech}
               </span>
             ))}
           </div>
         </div>
 
-        <div className="mt-auto flex justify-between space-x-4 pt-5 border-t border-primary-bg">
+        <div className="mt-auto flex justify-between space-x-2 pt-5 border-t border-primary-bg">
           {project.githubLink && (
-            <a
-              href={project.githubLink}
+            <LinkPreview
+              url={project.githubLink}
               target="_blank"
-              rel="noopener noreferrer"
-              className="text-text-secondary hover:text-accent-1 transition-colors flex items-center"
               aria-label={`GitHub repository for ${project.title}`}
+              rel="noopener noreferrer"
+              className="text-text-secondary hover:text-accent-1 transition-colors flex items-center font-mono"
             >
-              <FaGithub size={20} className="mr-1" /> <span className="font-mono text-sm">Code</span>
-            </a>
+            <div className="flex items-center text-white/50 hover:text-accent-1 transition-colors">
+             <FaGithub size={20} className="mr-1" />{" "}
+              <span className="font-mono text-sm ">Code</span>
+            </div>
+             
+            </LinkPreview>
           )}
+
           {project.liveLink && (
-            <a
-              href={project.liveLink}
+            <LinkPreview
+              url={project.liveLink}
               target="_blank"
               rel="noopener noreferrer"
+              aria-label={`Live Demo of ${project.title}`}
               className="text-text-secondary hover:text-accent-1 transition-colors flex items-center"
-              aria-label={`Live demo of ${project.title}`}
             >
-              <FaExternalLinkAlt size={18} className="mr-1" /> <span className="font-mono text-sm">Live</span>
-            </a>
+            <div className="flex items-center text-white/50 hover:text-accent-1 transition-colors">
+
+              <FaExternalLinkAlt size={18} className="mr-1" />{" "}
+              <span className="font-mono text-sm">Live</span>
+            </div>
+            </LinkPreview>
           )}
         </div>
       </div>
