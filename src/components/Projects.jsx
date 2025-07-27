@@ -63,32 +63,24 @@ const ProjectCard = ({ project, index }) => {
           {project.githubLink && (
             <LinkPreview
               url={project.githubLink}
-              target="_blank"
-              aria-label={`GitHub repository for ${project.title}`}
-              rel="noopener noreferrer"
               className="text-text-secondary hover:text-accent-1 transition-colors flex items-center font-mono"
             >
-            <div className="flex items-center text-white/50 hover:text-accent-1 transition-colors">
-             <FaGithub size={20} className="mr-1" />{" "}
-              <span className="font-mono text-sm ">Code</span>
-            </div>
-             
+              <div className="flex items-center text-white/50 hover:text-accent-1 transition-colors">
+                <FaGithub size={20} className="mr-1" />
+                <span className="font-mono text-sm ">Code</span>
+              </div>
             </LinkPreview>
           )}
 
           {project.liveLink && (
             <LinkPreview
               url={project.liveLink}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={`Live Demo of ${project.title}`}
               className="text-text-secondary hover:text-accent-1 transition-colors flex items-center"
             >
-            <div className="flex items-center text-white/50 hover:text-accent-1 transition-colors">
-
-              <FaExternalLinkAlt size={18} className="mr-1" />{" "}
-              <span className="font-mono text-sm">Live</span>
-            </div>
+              <div className="flex items-center text-white/50 hover:text-accent-1 transition-colors">
+                <FaExternalLinkAlt size={18} className="mr-1" />
+                <span className="font-mono text-sm">Live</span>
+              </div>
             </LinkPreview>
           )}
         </div>
