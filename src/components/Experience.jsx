@@ -1,7 +1,7 @@
 import React from 'react';
 import SectionTitle from './SectionTitle';
 import { leadershipAndInvolvement } from '../data/portfolioData.jsx';
-import { FaAward, FaUsers, FaBriefcase } from 'react-icons/fa';
+import { FaAward, FaUsers, FaBriefcase,FaGithub } from 'react-icons/fa';
 import { motion } from 'framer-motion';
 
 const experienceItemVariants = {
@@ -20,10 +20,10 @@ const experienceItemVariants = {
 const Experience = () => {
   const getIcon = (title) => {
     const lowerTitle = title.toLowerCase();
-    const iconSize = "w-4 h-4 sm:w-5 sm:h-5"; // Centralized icon size
-    if (lowerTitle.includes("partner")) return <FaBriefcase className={`text-accent-1 ${iconSize}`} />;
+    const iconSize = "w-4 h-4 sm:w-5 sm:h-5"; 
+    if (lowerTitle.includes("open")) return <FaGithub className={`text-accent-1 ${iconSize}`} />;
     if (lowerTitle.includes("executive")) return <FaUsers className={`text-accent-1 ${iconSize}`} />;
-    if (lowerTitle.includes("rank") || lowerTitle.includes("holder")) return <FaAward className={`text-accent-1 ${iconSize}`} />;
+    if (lowerTitle.includes("medalist") || lowerTitle.includes("holder")) return <FaAward className={`text-accent-1 ${iconSize}`} />;
     return <FaBriefcase className={`text-accent-1 ${iconSize}`} />; // Default
   };
 
@@ -51,6 +51,7 @@ const Experience = () => {
               viewport={{ once: true, amount: 0.25 }} // amount adjusted
             >
               {/* Icon Column (sits on the timeline line) */}
+             
               <div className="flex-shrink-0 w-8 h-8 sm:w-10 sm:h-10 bg-secondary-bg rounded-full border-2 border-accent-1 flex items-center justify-center mr-4 sm:mr-6 relative z-10">
                 {/* z-10 to ensure icon is above the line if they overlap slightly */}
                 {getIcon(item.role)}
@@ -65,7 +66,7 @@ const Experience = () => {
                 <p className="text-sm sm:text-md text-accent-2/90 font-semibold mb-2 sm:mb-3">{item.organization}</p>
                 
                 {item.points.length > 0 ? (
-                  <ul className="list-disc list-inside space-y-1.5 text-text-secondary pl-1">
+                  <ul className="list-disc list-outside pl-4 space-y-1.5 text-text-secondary ">
                     {item.points.map((point, i) => (
                       <li key={i} className="text-xs sm:text-sm leading-relaxed sm:leading-normal">
                         {point}

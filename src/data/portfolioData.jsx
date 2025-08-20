@@ -3,7 +3,6 @@ import {
   FaLinkedin,
   FaBootstrap,
   FaEnvelope,
-  FaPhone,
   FaReact,
   FaNodeJs,
   FaDatabase,
@@ -11,7 +10,7 @@ import {
   FaHtml5,
   FaCss3Alt,
   FaCodepen
-} from "react-icons/fa"; 
+} from "react-icons/fa";
 import {
   SiExpress,
   SiMongodb,
@@ -22,9 +21,8 @@ import {
   SiCplusplus,
   SiPython,
   SiPostman,
-  SiReact,
-  SiBootstrap,
-  SiLeetcode
+ SiShadcnui ,
+  SiPostgresql
 } from "react-icons/si"; // More specific tech icons
 
 import { RiNextjsFill } from "react-icons/ri";
@@ -35,9 +33,9 @@ export const personalInfo = {
   email: "niteshtiwari0234@gmail.com",
   linkedin: "https://linkedin.com/in/niteshtiwari29",
   github: "https://github.com/nitesh2920",
-  resumeLink: "/NiteshTiwariResume.pdf", // Make sure your resume is in public/
+  resumeLink: "/NiteshTiwari.pdf", 
   bio: "Innovative Full Stack Developer passionate about creating seamless and impactful web solutions. Eager to leverage modern technologies to solve real-world problems and contribute to dynamic team environments.",
-  shortBio: "I build things for the web." // For Hero section
+  shortBio: "I build things for the web." 
 };
 
 export const education = [
@@ -62,9 +60,32 @@ export const education = [
 ];
 
 export const projects = [
-{
-  title: "Saas landing page",
-    tech: ["NextJS", "tailwindcss", "typescript","framer-motion"],
+  {
+    title: "ShortIt",
+    tech: ["ReactJs", "supabase", "tailwindcss", "shadcn", "clerk"],
+    description:
+      "ShortIt is a modern URL shortener SaaS built with React, TypeScript, and Tailwind CSS. It features Clerk authentication, custom short links, QR code generation, and detailed analytics for tracking clicks and locations. Users can manage, edit, or delete their links through a clean, responsive UI backed by Supabase.",
+    date: "August 2025", // The month and year when the project was completed or released
+    githubLink: "https://github.com/nitesh2920/shortIt", // Replace with actual link
+    liveLink: "https://short-its.vercel.app/", // Replace with actual link if available
+    category: "FullStack",
+    icon: <FaReact size={24} className="text-accent-1" />
+  },
+  {
+    title: "Climato",
+    tech: ["ReactJs", "tailwindcss", "typescript", "shadcn", "TanstackQuery"],
+    description:
+      "Climato is a modern weather web application that allows users to search and view real-time climate information for any location. With a clean, responsive UI, Climato makes it easy to stay updated with the latest weather conditions, either by search or by using your current location.",
+    date: "August 2025",
+    githubLink: "https://github.com/nitesh2920/Climato",
+    liveLink: "https://climato-two.vercel.app/",
+    category: "Frontend",
+    icon: <FaReact size={24} className="text-accent-1" />
+  },
+
+  {
+    title: "Saas landing page",
+    tech: ["NextJS", "tailwindcss", "typescript", "framer-motion"],
     description:
       " SaaS Landing Page is a modern, responsive landing page template built with Next.js, TypeScript, and Tailwind CSS. It features a clean design, smooth animations using Framer Motion, and is optimized for performance and SEO.",
     date: "July 2025",
@@ -72,22 +93,19 @@ export const projects = [
     liveLink: "https://fancy-landing-page.vercel.app/", // Replace with actual link if available
     category: "Frontend",
     icon: <RiNextjsFill size={24} className="text-accent-1" />
+  },
 
-},
-{
-  title: "AI Article Summarizer",
+  {
+    title: "AI Article Summarizer",
     tech: ["NextJS", "tailwindcss", "typescript"],
     description:
-    "AI Article Summarizer is a web application that uses AI to summarize long-form articles from URLs. Users can paste any article link and receive a concise, clean summary in seconds.",
+      "AI Article Summarizer is a web application that uses AI to summarize long-form articles from URLs. Users can paste any article link and receive a concise, clean summary in seconds.",
     date: "July 2025",
     githubLink: "https://github.com/nitesh2920/AI-Article-Summarizer", // Replace with actual link
     liveLink: "https://ai-article-summarize.vercel.app", // Replace with actual link if available
     category: "Frontend",
     icon: <RiNextjsFill size={24} className="text-accent-1" />
-
-},
-
-
+  },
 
   {
     title: "Snaptopdf",
@@ -116,7 +134,7 @@ export const projects = [
     tech: ["React JS", "Node.js", "Express.js", "AI"],
     description:
       "Quote Genie is a mini project built with CopilotKit that lets users generate inspirational quotes, share them on social media, and delete saved quotes. It offers a simple and interactive interface for quote management.",
-    date: "Nov 2024 – Present",
+    date: "Nov 2024",
     githubLink: "https://github.com/nitesh2920/QuoteGenie",
     liveLink: "https://jarvis-quote.vercel.app/",
     category: "Frontend",
@@ -163,11 +181,14 @@ export const skills = {
     { name: "Express JS", icon: <SiExpress /> },
     { name: "Next JS", icon: <RiNextjsFill /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+    {name:"Shadcn ui",icon:<SiShadcnui/>},
     { name: "Bootstrap", icon: <FaBootstrap /> }
   ],
 
   toolsAndPlatforms: [
     { name: "MongoDB", icon: <SiMongodb /> },
+    { name: "PostgreSQL", icon: <SiPostgresql /> },
+
     { name: "Firebase", icon: <SiFirebase /> },
     { name: "Git & GitHub", icon: <FaGithub /> },
     { name: "VS Code", icon: <FaCode /> },
@@ -197,6 +218,16 @@ export const leadershipAndInvolvement = [
     duration: "Jun 2023",
     points: [
       "      Achieved the top position in academic performance across all students in the batch."
+    ]
+  },
+  {
+    role: "Open Source Contributor",
+    organization: "CopilotKit • WebCrumbs AI",
+    duration: "Oct 2024",
+    points: [
+      "Contributed to the CopilotKit repository by building a Quote Generator app using CopilotKit's AI capabilities.",
+      "Contributed to WebCrumbs AI by developing reusable HTML and CSS components for the UI library.",
+      "Collaborated with maintainers and followed best practices in open-source contribution workflows."
     ]
   }
 ];
