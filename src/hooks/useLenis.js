@@ -16,6 +16,9 @@ export const useLenis = () => {
       infinite: false,
     });
 
+    // Make Lenis instance globally available
+    window.lenis = lenis;
+
     // Animation frame loop
     function raf(time) {
       lenis.raf(time);
@@ -27,6 +30,7 @@ export const useLenis = () => {
     // Cleanup
     return () => {
       lenis.destroy();
+      window.lenis = null;
     };
   }, []);
 };

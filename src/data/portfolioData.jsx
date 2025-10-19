@@ -37,13 +37,13 @@ export const personalInfo = {
 export const education = [
   {
     institution: "Arka Jain University ",
-    degree: "Bachelor of Engineering in Computer Science",
+    degree: "Bachelor of Engineering in Computer Science and Engineering",
     duration: "June 2023 – Present",
     score: "CGPA: 9.3/10"
   },
   {
     institution: "Arka Jain University",
-    degree: "Diploma in CSE ",
+    degree: "Diploma in Computer Science and Engineering ",
     duration: "June 2020 - June 2023",
     score: "CGPA: 9.3/10"
   },

@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { FaArrowUp, FaRocket } from 'react-icons/fa';
+import { FaRocket } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const ScrollToTop = () => {
@@ -16,10 +16,20 @@ const ScrollToTop = () => {
   };
 
   const scrollToTop = () => {
-    window.scrollTo({ 
-      top: 0, 
-      behavior: 'smooth' 
-    });
+    // Use Lenis for smooth scrolling if available
+    const lenis = window.lenis;
+    if (lenis) {
+      lenis.scrollTo(0, {
+        duration: 1.5,
+        easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
+      });
+    } else {
+      // Fallback to regular scroll
+      window.scrollTo({ 
+        top: 0, 
+        behavior: 'smooth' 
+      });
+    }
   };
 
   useEffect(() => {

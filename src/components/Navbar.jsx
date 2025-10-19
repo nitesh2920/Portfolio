@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData.jsx';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { scrollToElement } from '../utils/lenisScroll.js';
 
 const navItems = [
   { name: 'Home', to: 'hero' },
@@ -91,15 +92,7 @@ const Navbar = () => {
         {/* Logo */}
         <motion.div variants={itemVariants}>
           <button
-            onClick={() => {
-              const element = document.getElementById('hero');
-              if (element) {
-                element.scrollIntoView({ 
-                  behavior: 'smooth',
-                  block: 'start'
-                });
-              }
-            }}
+            onClick={() => scrollToElement('hero')}
             className="group cursor-pointer"
           >
             <motion.h1 
@@ -132,15 +125,7 @@ const Navbar = () => {
                 transition={{ delay: 0.1 * index }}
               >
                 <button
-                  onClick={() => {
-                    const element = document.getElementById(item.to);
-                    if (element) {
-                      element.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                      });
-                    }
-                  }}
+                  onClick={() => scrollToElement(item.to)}
                   className="relative text-text-secondary hover:text-accent-1 font-mono transition-all duration-300 cursor-pointer py-2 px-2 xl:px-3 rounded-lg hover:bg-accent-1/10 group text-sm xl:text-base"
                 >
                   {item.name}
@@ -186,15 +171,7 @@ const Navbar = () => {
               whileTap={{ scale: 0.95 }}
             >
               <button
-                onClick={() => {
-                  const element = document.getElementById(item.to);
-                  if (element) {
-                    element.scrollIntoView({ 
-                      behavior: 'smooth',
-                      block: 'start'
-                    });
-                  }
-                }}
+                onClick={() => scrollToElement(item.to)}
                 className="relative text-text-secondary hover:text-accent-1 font-mono transition-all duration-300 cursor-pointer py-2 px-1.5 rounded-lg hover:bg-accent-1/10 group text-xs"
               >
                 {/* Use shorter names for medium screens */}
@@ -275,13 +252,7 @@ const Navbar = () => {
               >
                 <button
                   onClick={() => {
-                    const element = document.getElementById(item.to);
-                    if (element) {
-                      element.scrollIntoView({ 
-                        behavior: 'smooth',
-                        block: 'start'
-                      });
-                    }
+                    scrollToElement(item.to);
                     setIsOpen(false);
                   }}
                   className="block w-full text-left px-6 py-4 text-text-secondary hover:text-accent-1 hover:bg-primary-bg/50 font-mono transition-all duration-300 cursor-pointer border-l-4 border-transparent hover:border-accent-1"
