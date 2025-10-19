@@ -1,31 +1,115 @@
-import React from 'react';
 import { TypeAnimation } from 'react-type-animation';
 import { personalInfo, socialLinks } from '../data/portfolioData.jsx';
 import { FaDownload } from 'react-icons/fa';
-import { Link as ScrollLink } from 'react-scroll';
 import { motion } from 'framer-motion';
 
 const Hero = () => {
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.2,
+        delayChildren: 0.1,
+      },
+    },
+  };
+
+  const itemVariants = {
+    hidden: { opacity: 0, y: 30 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: {
+        duration: 0.6,
+        ease: "easeOut",
+      },
+    },
+  };
+
+  const socialVariants = {
+    hidden: { opacity: 0, scale: 0.8 },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      transition: {
+        duration: 0.4,
+        ease: "easeOut",
+      },
+    },
+  };
+
   return (
     <section id="hero" className="min-h-screen flex items-center justify-center bg-primary-bg relative overflow-hidden">
-      {/* Optional: Subtle background elements if you want */}
-      {/* <div className="absolute inset-0 opacity-5">
-        <img src="/path/to/subtle-code-pattern.svg" alt="background pattern" className="w-full h-full object-cover"/>
-      </div> */}
-      
-      <div className="container mx-auto mt-9 px-4 sm:px-6 lg:px-8 text-center relative z-10 pt-7">
+      {/* Subtle animated background elements */}
+      <div className="absolute inset-0 overflow-hidden">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-        >
-          <h3 className="text-accent-1 font-mono text-lg md:mt-6 backdrop:sm:text-xl mb-3 ">
+          className="absolute top-20 left-10 w-2 h-2 bg-accent-1 rounded-full opacity-30"
+          animate={{
+            y: [0, -20, 0],
+            opacity: [0.3, 0.7, 0.3],
+          }}
+          transition={{
+            duration: 4,
+            repeat: Infinity,
+            ease: "easeInOut",
+          }}
+        />
+        <motion.div
+          className="absolute top-40 right-20 w-1 h-1 bg-accent-2 rounded-full opacity-40"
+          animate={{
+            y: [0, 15, 0],
+            opacity: [0.4, 0.8, 0.4],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 1,
+          }}
+        />
+        <motion.div
+          className="absolute bottom-32 left-1/4 w-1.5 h-1.5 bg-accent-1 rounded-full opacity-25"
+          animate={{
+            y: [0, -25, 0],
+            opacity: [0.25, 0.6, 0.25],
+          }}
+          transition={{
+            duration: 5,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: 2,
+          }}
+        />
+      </div>
+      
+      <motion.div
+        className="container mx-auto mt-9 px-4 sm:px-6 lg:px-8 text-center relative z-10 pt-7"
+        variants={containerVariants}
+        initial="hidden"
+        animate="visible"
+      >
+        <motion.div variants={itemVariants}>
+          <motion.h3 
+            className="text-accent-1 font-mono text-lg md:mt-6 sm:text-xl mb-3"
+            whileHover={{ scale: 1.05 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             Hi, my name is
-          </h3>
-          <h1 className="text-4xl sm:text-6xl md:text-5xl font-bold text-text-primary mb-4">
+          </motion.h3>
+          
+          <motion.h1 
+            className="text-4xl sm:text-6xl md:text-7xl font-bold text-text-primary mb-4"
+            whileHover={{ scale: 1.02 }}
+            transition={{ type: "spring", stiffness: 300 }}
+          >
             {personalInfo.name}.
-          </h1>
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-secondary mb-6">
+          </motion.h1>
+          
+          <motion.h2 
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-secondary mb-6"
+            whileHover={{ scale: 1.01 }}
+          >
             <TypeAnimation
               sequence={[
                 'I build things for the web.',
@@ -36,75 +120,131 @@ const Hero = () => {
                 2000,
                 'I solve problems.',
                 2000,
+                'I create digital experiences.',
+                2000,
               ]}
               wrapper="span"
               speed={50}
               repeat={Infinity}
               className="font-mono"
             />
-          </h2>
-          <p className="text-text-secondary max-w-2xl mx-auto mb-8 text-base sm:text-lg">
+          </motion.h2>
+          
+          <motion.p 
+            className="text-text-secondary max-w-2xl mx-auto mb-8 text-base sm:text-lg leading-relaxed"
+            whileHover={{ scale: 1.02 }}
+          >
             {personalInfo.bio}
-          </p>
+          </motion.p>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          variants={itemVariants}
           className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12"
         >
-          <ScrollLink
-            to="projects"
-            smooth={true}
-            duration={500}
-            offset={-70}
-            className="px-8 py-3 font-mono text-lg bg-accent-1 text-primary-bg rounded-md hover:bg-opacity-80 transition-all duration-300 cursor-pointer shadow-lg hover:shadow-accent-1/30"
+          <motion.div
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 10px 25px rgba(0, 245, 195, 0.3)"
+            }}
+            whileTap={{ scale: 0.95 }}
           >
-            View My Work
-          </ScrollLink>
-          <a
-            href={personalInfo.resumeLink}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="px-8 py-3 font-mono text-lg border-2 border-accent-1 text-accent-1 rounded-md hover:bg-accent-1 hover:text-primary-bg transition-all duration-300 flex items-center shadow-lg hover:shadow-accent-1/30"
+            <button
+              onClick={() => {
+                const element = document.getElementById('projects');
+                if (element) {
+                  element.scrollIntoView({ 
+                    behavior: 'smooth',
+                    block: 'start'
+                  });
+                }
+              }}
+              className="px-8 py-4 font-mono text-lg bg-accent-1 text-primary-bg rounded-lg cursor-pointer shadow-lg transition-all duration-300 hover:bg-opacity-90 transform hover:-translate-y-1"
+            >
+              View My Work
+            </button>
+          </motion.div>
+          
+          <motion.div
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 10px 25px rgba(0, 245, 195, 0.2)"
+            }}
+            whileTap={{ scale: 0.95 }}
           >
-            <FaDownload className="mr-2" /> Download CV
-          </a>
+            <a
+              href={personalInfo.resumeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="px-8 py-4 font-mono text-lg border-2 border-accent-1 text-accent-1 rounded-lg hover:bg-accent-1 hover:text-primary-bg transition-all duration-300 flex items-center shadow-lg transform hover:-translate-y-1"
+            >
+              <FaDownload className="mr-2" /> Download CV
+            </a>
+          </motion.div>
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="flex justify-center space-x-6"
+          variants={itemVariants}
+          className="flex justify-center space-x-8"
         >
           {Object.values(socialLinks).map((link, index) => (
-            <a
+            <motion.a
               key={index}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary hover:text-accent-1 transition-colors"
-              aria-label={link.url.split(':')[0]} // For accessibility e.g., "mailto", "https"
+              className="text-text-secondary hover:text-accent-1 transition-all duration-300 p-2 rounded-full hover:bg-accent-1/10"
+              aria-label={link.url.split(':')[0]}
+              variants={socialVariants}
+              whileHover={{ 
+                scale: 1.2, 
+                rotate: 5,
+                boxShadow: "0 5px 15px rgba(0, 245, 195, 0.3)"
+              }}
+              whileTap={{ scale: 0.9 }}
             >
-              {React.cloneElement(link.icon, { size: 28 })}
-            </a>
+              {link.icon}
+            </motion.a>
           ))}
         </motion.div>
-      </div>
+      </motion.div>
       
-      {/* Scroll down indicator (optional) */}
-      <ScrollLink 
-        to="about" 
-        smooth={true} 
-        duration={800} 
-        className="absolute bottom-10 left-1/2 transform -translate-x-1/2 cursor-pointer animate-bounce"
+      {/* Enhanced scroll indicator */}
+      <motion.div
+        className="absolute bottom-10 left-1/2 transform -translate-x-1/2"
+        animate={{ y: [0, 10, 0] }}
+        transition={{ duration: 2, repeat: Infinity }}
       >
-        <svg xmlns="http://www.w3.org/2000/svg" className="h-8 w-8 text-accent-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-        </svg>
-      </ScrollLink>
+        <button 
+          onClick={() => {
+            const element = document.getElementById('about');
+            if (element) {
+              element.scrollIntoView({ 
+                behavior: 'smooth',
+                block: 'start'
+              });
+            }
+          }}
+          className="cursor-pointer group flex flex-col items-center"
+        >
+          <motion.span 
+            className="text-accent-1 font-mono text-sm mb-2 group-hover:text-accent-2 transition-colors"
+            whileHover={{ scale: 1.1 }}
+          >
+            Scroll Down
+          </motion.span>
+          <motion.svg 
+            xmlns="http://www.w3.org/2000/svg" 
+            className="h-8 w-8 text-accent-1 group-hover:text-accent-2 transition-colors" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+            whileHover={{ scale: 1.1 }}
+          >
+            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+          </motion.svg>
+        </button>
+      </motion.div>
     </section>
   );
 };
