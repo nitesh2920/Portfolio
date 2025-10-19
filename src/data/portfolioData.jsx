@@ -6,10 +6,7 @@ import {
   FaReact,
   FaNodeJs,
   FaDatabase,
-  FaCode,
-  FaHtml5,
-  FaCss3Alt,
-  FaCodepen
+  FaCode
 } from "react-icons/fa";
 import {
   SiExpress,
@@ -19,11 +16,10 @@ import {
   SiJavascript,
   SiTypescript,
   SiCplusplus,
-  SiPython,
   SiPostman,
- SiShadcnui ,
+  SiShadcnui,
   SiPostgresql
-} from "react-icons/si"; // More specific tech icons
+} from "react-icons/si";
 
 import { RiNextjsFill } from "react-icons/ri";
 
@@ -33,9 +29,9 @@ export const personalInfo = {
   email: "niteshtiwari0234@gmail.com",
   linkedin: "https://linkedin.com/in/niteshtiwari29",
   github: "https://github.com/nitesh2920",
-  resumeLink: "/Nitesh_Tiwari.pdf", 
+  resumeLink: "/Nitesh_Tiwari.pdf",
   bio: "Innovative Full Stack Developer passionate about creating seamless and impactful web solutions. Eager to leverage modern technologies to solve real-world problems and contribute to dynamic team environments.",
-  shortBio: "I build things for the web." 
+  shortBio: "I build things for the web."
 };
 
 export const education = [
@@ -60,6 +56,17 @@ export const education = [
 ];
 
 export const projects = [
+  {
+    title: "PrepSphere AI",
+    tech: ["NextJs", "NeonDb", "tailwindcss", "shadcn", "Drizzle", "inngest"],
+    description:
+      "PrepSphere AI is a study companion that transforms the way students, professionals to prepare for exams , interviews or to learn any topic. Using advanced AI technology, it generates personalized study materials including comprehensive notes, interactive flashcards, and challenging quizzes tailored to your learning needs.",
+    date: "Oct 2025", // The month and year when the project was completed or released
+    githubLink: "https://github.com/nitesh2920/PrepSphere-AI", // Replace with actual link
+    liveLink: "https://prepsphereai.vercel.app/", // Replace with actual link if available
+    category: "FullStack",
+    icon: <RiNextjsFill size={24} className="text-accent-1" />
+  },
   {
     title: "ShortIt",
     tech: ["ReactJs", "supabase", "tailwindcss", "shadcn", "clerk"],
@@ -91,18 +98,6 @@ export const projects = [
     date: "July 2025",
     githubLink: "https://github.com/nitesh2920/Saas-Landing-Page", // Replace with actual link
     liveLink: "https://fancy-landing-page.vercel.app/", // Replace with actual link if available
-    category: "Frontend",
-    icon: <RiNextjsFill size={24} className="text-accent-1" />
-  },
-
-  {
-    title: "AI Article Summarizer",
-    tech: ["NextJS", "tailwindcss", "typescript"],
-    description:
-      "AI Article Summarizer is a web application that uses AI to summarize long-form articles from URLs. Users can paste any article link and receive a concise, clean summary in seconds.",
-    date: "July 2025",
-    githubLink: "https://github.com/nitesh2920/AI-Article-Summarizer", // Replace with actual link
-    liveLink: "https://ai-article-summarize.vercel.app", // Replace with actual link if available
     category: "Frontend",
     icon: <RiNextjsFill size={24} className="text-accent-1" />
   },
@@ -181,7 +176,7 @@ export const skills = {
     { name: "Express JS", icon: <SiExpress /> },
     { name: "Next JS", icon: <RiNextjsFill /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss /> },
-    {name:"Shadcn ui",icon:<SiShadcnui/>},
+    { name: "Shadcn ui", icon: <SiShadcnui /> },
     { name: "Bootstrap", icon: <FaBootstrap /> }
   ],
 
