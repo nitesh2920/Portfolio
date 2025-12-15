@@ -1,7 +1,8 @@
 import { TypeAnimation } from 'react-type-animation';
-import { personalInfo, socialLinks } from '../data/portfolioData.jsx';
-import { FaDownload } from 'react-icons/fa';
+import { personalInfo, socialLinks, achievementsAndLeadership } from '../data/portfolioData.jsx';
+import { FaDownload, FaTrophy } from 'react-icons/fa';
 import { motion } from 'framer-motion';
+import { scrollToElement } from '../utils/lenisScroll.js';
 
 const Hero = () => {
   const containerVariants = {
@@ -89,6 +90,79 @@ const Hero = () => {
         initial="hidden"
         animate="visible"
       >
+        {/* Latest Achievement Banner */}
+        <motion.div
+          variants={itemVariants}
+          className="mb-8 relative group"
+        >
+          <motion.button
+            onClick={() => scrollToElement('experience')}
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-accent-1/10 via-accent-2/10 to-accent-1/10 backdrop-blur-sm border border-accent-1/30 rounded-full px-6 py-3 shadow-lg cursor-pointer transition-all duration-300 relative"
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ delay: 0.2, duration: 0.8, type: "spring", stiffness: 200 }}
+            whileHover={{ 
+              scale: 1.05,
+              boxShadow: "0 10px 30px rgba(0, 245, 195, 0.3)"
+            }}
+            whileTap={{ scale: 0.95 }}
+            title="Click to view all achievements"
+          >
+            <motion.div
+              animate={{ 
+                rotate: [0, 10, -10, 0],
+                scale: [1, 1.1, 1]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+              className="text-accent-1"
+            >
+              <FaTrophy size={20} />
+            </motion.div>
+            
+            <div className="text-left">
+              <motion.div 
+                className="text-accent-1 font-bold text-sm sm:text-base font-mono"
+                animate={{ 
+                  textShadow: [
+                    "0 0 0px rgba(0, 245, 195, 0.5)",
+                    "0 0 10px rgba(0, 245, 195, 0.5)",
+                    "0 0 0px rgba(0, 245, 195, 0.5)"
+                  ]
+                }}
+                transition={{ duration: 3, repeat: Infinity }}
+              >
+                🎉 {achievementsAndLeadership[0].role}
+              </motion.div>
+              <div className="text-text-secondary text-xs sm:text-sm">
+                {achievementsAndLeadership[0].organization} • {achievementsAndLeadership[0].duration}
+              </div>
+            </div>
+            
+            <motion.div
+              className="px-3 py-1 bg-accent-1/20 text-accent-1 text-xs font-bold rounded-full border border-accent-1/50"
+              animate={{ 
+                boxShadow: [
+                  "0 0 0px rgba(0, 245, 195, 0.4)",
+                  "0 0 15px rgba(0, 245, 195, 0.6)",
+                  "0 0 0px rgba(0, 245, 195, 0.4)"
+                ]
+              }}
+              transition={{ duration: 2, repeat: Infinity }}
+            >
+              NEW
+            </motion.div>
+          </motion.button>
+          
+          {/* Hover tooltip */}
+          <motion.div
+            className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-secondary-bg text-text-primary px-3 py-1 rounded-lg text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none z-20"
+            initial={{ y: 5 }}
+            whileHover={{ y: 0 }}
+          >
+            Click to view all achievements
+            <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-secondary-bg rotate-45"></div>
+          </motion.div>
+        </motion.div>
         <motion.div variants={itemVariants}>
           <motion.h3 
             className="text-accent-1 font-mono text-lg md:mt-6 sm:text-xl mb-3"
@@ -150,15 +224,7 @@ const Hero = () => {
             whileTap={{ scale: 0.95 }}
           >
             <button
-              onClick={() => {
-                const element = document.getElementById('projects');
-                if (element) {
-                  element.scrollIntoView({ 
-                    behavior: 'smooth',
-                    block: 'start'
-                  });
-                }
-              }}
+              onClick={() => scrollToElement('projects')}
               className="px-8 py-4 font-mono text-lg bg-accent-1 text-primary-bg rounded-lg cursor-pointer shadow-lg transition-all duration-300 hover:bg-opacity-90 transform hover:-translate-y-1"
             >
               View My Work
@@ -216,15 +282,7 @@ const Hero = () => {
         transition={{ duration: 2, repeat: Infinity }}
       >
         <button 
-          onClick={() => {
-            const element = document.getElementById('about');
-            if (element) {
-              element.scrollIntoView({ 
-                behavior: 'smooth',
-                block: 'start'
-              });
-            }
-          }}
+          onClick={() => scrollToElement('about')}
           className="cursor-pointer group flex flex-col items-center"
         >
           <motion.span 

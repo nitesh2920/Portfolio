@@ -198,13 +198,23 @@ export const skills = {
   ]
 };
 
-export const leadershipAndInvolvement = [
+export const achievementsAndLeadership = [
+  {
+    role: "Grand Finalist",
+    organization: "Smart India Hackathon 2025",
+    duration: "Dec 2025",
+    points: [
+      "Selected as Grand Finalist among thousands of participants nationwide in the prestigious Smart India Hackathon 2025.",
+      "Developed innovative solutions addressing real-world problems using cutting-edge technology.",
+      "Collaborated with cross-functional teams to deliver impactful prototypes within tight deadlines."
+    ]
+  },
   {
     role: "Technical Executive",
     organization: "Computer Society of India, AJU Student Branch",
     duration: "Aug 2023 – Present",
     points: [
-      "Organized 5+ workshops, coding competions, and seminar to enhance student learning and engagement."
+      "Organized 5+ workshops, coding competitions, and seminars to enhance student learning and engagement."
     ]
   },
   {
@@ -212,7 +222,7 @@ export const leadershipAndInvolvement = [
     organization: "Arka Jain University",
     duration: "Jun 2023",
     points: [
-      "      Achieved the top position in academic performance across all students in the batch."
+      "Achieved the top position in academic performance across all students in the batch."
     ]
   },
   {
