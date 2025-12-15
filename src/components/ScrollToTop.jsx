@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react';
 import { FaRocket } from 'react-icons/fa';
 import { motion, AnimatePresence } from 'framer-motion';
+import { throttle } from '../utils/performance.js';
 
 const ScrollToTop = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [scrollProgress, setScrollProgress] = useState(0);
 
-  const toggleVisibility = () => {
+  const toggleVisibility = throttle(() => {
     const scrolled = window.pageYOffset;
     const maxHeight = document.documentElement.scrollHeight - window.innerHeight;
     const progress = (scrolled / maxHeight) * 100;
     
     setScrollProgress(progress);
     setIsVisible(scrolled > 300);
-  };
+  }, 16); // ~60fps
 
   const scrollToTop = () => {
     // Use Lenis for smooth scrolling if available
@@ -33,11 +34,11 @@ const ScrollToTop = () => {
   };
 
   useEffect(() => {
-    window.addEventListener('scroll', toggleVisibility);
+    window.addEventListener('scroll', toggleVisibility, { passive: true });
     return () => {
       window.removeEventListener('scroll', toggleVisibility);
     };
-  }, []);
+  }, [toggleVisibility]);
 
   return (
     <AnimatePresence>

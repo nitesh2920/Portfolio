@@ -1,8 +1,9 @@
 import { useState, useEffect } from 'react';
 import { personalInfo } from '../data/portfolioData.jsx';
 import { FaBars, FaTimes } from 'react-icons/fa';
-import { motion, AnimatePresence } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { scrollToElement } from '../utils/lenisScroll.js';
+import { throttle } from '../utils/performance.js';
 
 const navItems = [
   { name: 'Home', to: 'hero' },
@@ -18,10 +19,11 @@ const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
+    const handleScroll = throttle(() => {
       setIsScrolled(window.scrollY > 50);
-    };
-    window.addEventListener('scroll', handleScroll);
+    }, 16); // ~60fps
+    
+    window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
@@ -31,51 +33,22 @@ const Navbar = () => {
       y: 0, 
       opacity: 1,
       transition: {
-        duration: 0.6,
-        ease: "easeOut",
-        staggerChildren: 0.1
+        duration: 0.4,
+        ease: "easeOut"
       }
     }
   };
 
   const itemVariants = {
-    hidden: { y: -20, opacity: 0 },
+    hidden: { y: -10, opacity: 0 },
     visible: { 
       y: 0, 
-      opacity: 1,
-      transition: { duration: 0.4 }
-    }
-  };
-
-  const mobileMenuVariants = {
-    hidden: { 
-      opacity: 0, 
-      height: 0,
-      transition: {
-        duration: 0.3,
-        staggerChildren: 0.05,
-        staggerDirection: -1
-      }
-    },
-    visible: { 
-      opacity: 1, 
-      height: 'auto',
-      transition: {
-        duration: 0.3,
-        staggerChildren: 0.05,
-        delayChildren: 0.1
-      }
-    }
-  };
-
-  const mobileItemVariants = {
-    hidden: { x: -20, opacity: 0 },
-    visible: { 
-      x: 0, 
       opacity: 1,
       transition: { duration: 0.3 }
     }
   };
+
+
 
   return (
     <motion.nav
@@ -110,175 +83,104 @@ const Navbar = () => {
         </motion.div>
 
         {/* Desktop Menu */}
-        <motion.div 
-          className="hidden lg:flex items-center"
-          variants={itemVariants}
-        >
+        <div className="hidden lg:flex items-center">
           <div className="flex space-x-4 xl:space-x-6 items-center">
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 * index }}
-              >
+            {navItems.map((item) => (
+              <div key={item.name}>
                 <button
                   onClick={() => scrollToElement(item.to)}
-                  className="relative text-text-secondary hover:text-accent-1 font-mono transition-all duration-300 cursor-pointer py-2 px-2 xl:px-3 rounded-lg hover:bg-accent-1/10 group text-sm xl:text-base"
+                  className="relative text-text-secondary hover:text-accent-1 font-mono transition-colors duration-200 cursor-pointer py-2 px-2 xl:px-3 rounded-lg hover:bg-accent-1/10 group text-sm xl:text-base"
                 >
                   {item.name}
-                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-1 group-hover:w-full transition-all duration-300"></span>
+                  <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-1 group-hover:w-full transition-all duration-200 will-change-auto"></span>
                 </button>
-              </motion.div>
+              </div>
             ))}
           </div>
           
-          <motion.div
-            className="ml-6 xl:ml-8"
-            whileHover={{ 
-              scale: 1.05, 
-              boxShadow: "0 0 20px rgba(0, 245, 195, 0.4)" 
-            }}
-            whileTap={{ scale: 0.95 }}
-            initial={{ opacity: 0, y: -20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.6 }}
-          >
+          <div className="ml-6 xl:ml-8">
             <a
               href={personalInfo.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-4 xl:px-6 py-2 xl:py-3 font-mono border-2 border-accent-1 text-accent-1 rounded-lg hover:bg-accent-1 hover:text-primary-bg transition-all duration-300 overflow-hidden text-sm xl:text-base whitespace-nowrap inline-block"
+              className="group relative px-4 xl:px-6 py-2 xl:py-3 font-mono border-2 border-accent-1 text-accent-1 rounded-lg transition-all duration-300 overflow-hidden text-sm xl:text-base whitespace-nowrap inline-block"
             >
-              <span className="relative z-10">Resume</span>
-              <div className="absolute inset-0 bg-accent-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-primary-bg">Resume</span>
+              <div className="absolute inset-0 bg-accent-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 will-change-transform"></div>
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Medium screens menu (tablet) */}
-        <motion.div 
-          className="hidden md:flex lg:hidden space-x-2 items-center"
-          variants={itemVariants}
-        >
+        <div className="hidden md:flex lg:hidden space-x-2 items-center">
           {/* Show all nav items but with shorter names for some */}
-          {navItems.map((item, index) => (
-            <motion.div
-              key={item.name}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-            >
+          {navItems.map((item) => (
+            <div key={item.name}>
               <button
                 onClick={() => scrollToElement(item.to)}
-                className="relative text-text-secondary hover:text-accent-1 font-mono transition-all duration-300 cursor-pointer py-2 px-1.5 rounded-lg hover:bg-accent-1/10 group text-xs"
+                className="relative text-text-secondary hover:text-accent-1 font-mono transition-colors duration-200 cursor-pointer py-2 px-1.5 rounded-lg hover:bg-accent-1/10 group text-xs"
               >
                 {/* Use shorter names for medium screens */}
                 {item.name === 'Experience' ? 'Exp' : item.name === 'Projects' ? 'Work' : item.name}
-                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-1 group-hover:w-full transition-all duration-300"></span>
+                <span className="absolute bottom-0 left-0 w-0 h-0.5 bg-accent-1 group-hover:w-full transition-all duration-200 will-change-auto"></span>
               </button>
-            </motion.div>
+            </div>
           ))}
           
-          <motion.div
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
+          <div>
             <a
               href={personalInfo.resumeLink}
               target="_blank"
               rel="noopener noreferrer"
-              className="group relative px-2 py-1.5 font-mono border-2 border-accent-1 text-accent-1 rounded-lg hover:bg-accent-1 hover:text-primary-bg transition-all duration-300 overflow-hidden text-xs whitespace-nowrap"
+              className="group relative px-2 py-1.5 font-mono border-2 border-accent-1 text-accent-1 rounded-lg transition-all duration-300 overflow-hidden text-xs whitespace-nowrap inline-block"
             >
-              <span className="relative z-10">CV</span>
-              <div className="absolute inset-0 bg-accent-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300"></div>
+              <span className="relative z-10 transition-colors duration-300 group-hover:text-primary-bg">CV</span>
+              <div className="absolute inset-0 bg-accent-1 transform -translate-x-full group-hover:translate-x-0 transition-transform duration-300 will-change-transform"></div>
             </a>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* Mobile Menu Button */}
-        <motion.div 
-          className="flex md:hidden"
-          variants={itemVariants}
-        >
-          <motion.button 
+        <div className="flex md:hidden">
+          <button 
             onClick={() => setIsOpen(!isOpen)} 
-            className="text-accent-1 focus:outline-none p-2 rounded-lg hover:bg-accent-1/10 transition-colors duration-300 z-50 relative"
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
+            className="text-accent-1 focus:outline-none p-2 rounded-lg hover:bg-accent-1/10 transition-colors duration-200 z-50 relative"
           >
-            <AnimatePresence mode="wait">
-              {isOpen ? (
-                <motion.div
-                  key="close"
-                  initial={{ rotate: -90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: 90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <FaTimes size={24} />
-                </motion.div>
-              ) : (
-                <motion.div
-                  key="menu"
-                  initial={{ rotate: 90, opacity: 0 }}
-                  animate={{ rotate: 0, opacity: 1 }}
-                  exit={{ rotate: -90, opacity: 0 }}
-                  transition={{ duration: 0.2 }}
-                >
-                  <FaBars size={24} />
-                </motion.div>
-              )}
-            </AnimatePresence>
-          </motion.button>
-        </motion.div>
+            {isOpen ? <FaTimes size={24} /> : <FaBars size={24} />}
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
-      <AnimatePresence>
-        {isOpen && (
-          <motion.div
-            variants={mobileMenuVariants}
-            initial="hidden"
-            animate="visible"
-            exit="hidden"
-            className="md:hidden bg-secondary-bg/95 backdrop-blur-lg border-t border-accent-1/20"
-          >
-            {navItems.map((item, index) => (
-              <motion.div
-                key={item.name}
-                variants={mobileItemVariants}
+      {isOpen && (
+        <div className="md:hidden bg-secondary-bg/95 backdrop-blur-lg border-t border-accent-1/20">
+          {navItems.map((item) => (
+            <div key={item.name}>
+              <button
+                onClick={() => {
+                  scrollToElement(item.to);
+                  setIsOpen(false);
+                }}
+                className="block w-full text-left px-6 py-4 text-text-secondary hover:text-accent-1 hover:bg-primary-bg/50 font-mono transition-colors duration-200 cursor-pointer border-l-4 border-transparent hover:border-accent-1"
               >
-                <button
-                  onClick={() => {
-                    scrollToElement(item.to);
-                    setIsOpen(false);
-                  }}
-                  className="block w-full text-left px-6 py-4 text-text-secondary hover:text-accent-1 hover:bg-primary-bg/50 font-mono transition-all duration-300 cursor-pointer border-l-4 border-transparent hover:border-accent-1"
-                >
-                  {item.name}
-                </button>
-              </motion.div>
-            ))}
-            
-            <motion.div
-              variants={mobileItemVariants}
-              className="p-4"
+                {item.name}
+              </button>
+            </div>
+          ))}
+          
+          <div className="p-4">
+            <a
+              href={personalInfo.resumeLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="block text-center px-6 py-3 font-mono border-2 border-accent-1 text-accent-1 rounded-lg hover:bg-accent-1 hover:text-primary-bg transition-all duration-200"
+              onClick={() => setIsOpen(false)}
             >
-              <a
-                href={personalInfo.resumeLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="block text-center px-6 py-3 font-mono border-2 border-accent-1 text-accent-1 rounded-lg hover:bg-accent-1 hover:text-primary-bg transition-all duration-300"
-                onClick={() => setIsOpen(false)}
-              >
-                Resume
-              </a>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+              Resume
+            </a>
+          </div>
+        </div>
+      )}
     </motion.nav>
   );
 };
