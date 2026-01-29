@@ -237,6 +237,28 @@ export const achievementsAndLeadership = [
   }
 ];
 
+export const workExperience = [
+  {
+    role: "Frontend Developer",
+    organization: "Astratechai",
+    duration: "Jun 2025 – Jul 2025",
+    points: [
+      "Translated Figma designs into pixel-perfect web applications with a focus on high performance.",
+      "Optimized web applications to achieve a perfect 100 score in SEO and Best Practices using Lighthouse analytics.",
+      "Analyzed and improved application speed and accessibility, resulting in a Lighthouse score of 92 for Accessibility."
+    ]
+  },
+  {
+    role: "Web Developer",
+    organization: "Tata Steel UISL",
+    duration: "Jun 2024 – Jul 2024",
+    points: [
+      "Designed and developed a user-friendly resume builder website, enhancing user experience through intuitive navigation and interactive features.",
+      "Implemented responsive design principles to ensure optimal functionality across various devices and screen sizes."
+    ]
+  }
+];
+
 export const socialLinks = {
   linkedin: { url: personalInfo.linkedin, icon: <FaLinkedin size={24} /> },
   github: { url: personalInfo.github, icon: <FaGithub size={24} /> },

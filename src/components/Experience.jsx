@@ -1,6 +1,6 @@
 import SectionTitle from './SectionTitle';
-import { achievementsAndLeadership } from '../data/portfolioData.jsx';
-import { FaAward, FaUsers, FaBriefcase, FaGithub, FaTrophy } from 'react-icons/fa';
+import { achievementsAndLeadership, workExperience } from '../data/portfolioData.jsx';
+import { FaAward, FaUsers, FaBriefcase, FaGithub, FaTrophy, FaLaptopCode } from 'react-icons/fa';
 import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
@@ -20,8 +20,6 @@ const experienceItemVariants = {
   }),
 };
 
-
-
 const Experience = () => {
   const containerRef = useRef(null);
   const { scrollYProgress } = useScroll({
@@ -31,14 +29,136 @@ const Experience = () => {
 
   const progressHeight = useTransform(scrollYProgress, [0, 1], ["0%", "100%"]);
 
-  const getIcon = (title) => {
+  const getIcon = (title, isWorkExperience = false) => {
     const lowerTitle = title.toLowerCase();
     const iconSize = "w-5 h-5 sm:w-6 sm:h-6"; 
+    
+    if (isWorkExperience) {
+      if (lowerTitle.includes("frontend") || lowerTitle.includes("developer")) return <FaLaptopCode className={`text-accent-1 ${iconSize}`} />;
+      if (lowerTitle.includes("web")) return <FaBriefcase className={`text-accent-1 ${iconSize}`} />;
+      return <FaBriefcase className={`text-accent-1 ${iconSize}`} />;
+    }
+    
     if (lowerTitle.includes("finalist") || lowerTitle.includes("hackathon")) return <FaTrophy className={`text-accent-1 ${iconSize}`} />;
     if (lowerTitle.includes("open")) return <FaGithub className={`text-accent-1 ${iconSize}`} />;
     if (lowerTitle.includes("executive")) return <FaUsers className={`text-accent-1 ${iconSize}`} />;
     if (lowerTitle.includes("medalist") || lowerTitle.includes("holder")) return <FaAward className={`text-accent-1 ${iconSize}`} />;
     return <FaBriefcase className={`text-accent-1 ${iconSize}`} />;
+  };
+
+  const renderTimelineSection = (items, isWorkExperience = false, startIndex = 0) => {
+    return items.map((item, index) => (
+      <motion.div
+        key={`${isWorkExperience ? 'work' : 'achievement'}-${index}`}
+        className="mb-12 flex items-start"
+        custom={startIndex + index}
+        variants={experienceItemVariants}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.3 }}
+      >
+        {/* Enhanced Icon */}
+        <motion.div 
+          className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-primary-bg rounded-full border-3 border-accent-1 flex items-center justify-center mr-6 sm:mr-8 relative z-10 shadow-xl"
+          whileHover={{ 
+            scale: 1.1, 
+            rotate: 360,
+            boxShadow: "0 0 30px rgba(0, 245, 195, 0.5)"
+          }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="relative z-10">
+            {getIcon(item.role, isWorkExperience)}
+          </div>
+        </motion.div>
+
+        {/* Enhanced Content Card */}
+        <motion.div 
+          className={`group flex-grow p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-500 border ${
+            item.role.includes('Grand Finalist') 
+              ? 'bg-gradient-to-br from-primary-bg to-accent-1/5 border-accent-1/50 hover:border-accent-1' 
+              : 'bg-primary-bg border-transparent hover:border-accent-1/30'
+          }`}
+          whileHover={{ 
+            y: -5, 
+            scale: 1.02,
+            boxShadow: item.role.includes('Grand Finalist') 
+              ? "0 20px 40px rgba(0, 245, 195, 0.25)" 
+              : "0 20px 40px rgba(0, 245, 195, 0.15)"
+          }}
+        >
+          <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
+            <div className="flex items-center gap-3">
+              <motion.h3 
+                className={`text-xl sm:text-2xl lg:text-2xl font-bold font-mono group-hover:scale-105 transition-transform duration-300 ${
+                  item.role.includes('Grand Finalist') ? 'text-accent-1' : 'text-accent-1'
+                }`}
+                whileHover={{ scale: 1.05 }}
+              >
+                {item.role}
+              </motion.h3>
+              {item.role.includes('Grand Finalist') && (
+                <motion.div
+                  className="relative px-3 py-1 bg-gradient-to-r from-accent-1/20 to-accent-2/20 text-accent-1 text-xs font-bold rounded-full border border-accent-1/50 overflow-hidden"
+                  animate={{ 
+                    boxShadow: [
+                      "0 0 0px rgba(0, 245, 195, 0.4)",
+                      "0 0 20px rgba(0, 245, 195, 0.6)",
+                      "0 0 0px rgba(0, 245, 195, 0.4)"
+                    ]
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  whileHover={{ scale: 1.1 }}
+                >
+                  <motion.div
+                    className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                    animate={{ x: ['-100%', '100%'] }}
+                    transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
+                  />
+                  <span className="relative z-10">🆕 NEW</span>
+                </motion.div>
+              )}
+            </div>
+            <p className={`text-sm font-mono px-3 py-1 rounded-full mt-2 sm:mt-0 ${
+              item.role.includes('Grand Finalist') 
+                ? 'text-accent-1 bg-accent-1/10 border border-accent-1/30' 
+                : 'text-text-secondary bg-secondary-bg/50'
+            }`}>
+              {item.duration}
+            </p>
+          </div>
+          
+          <motion.p 
+            className="text-lg text-accent-2 font-bold mb-4 group-hover:text-accent-1 transition-colors duration-300"
+            whileHover={{ scale: 1.02 }}
+          >
+            {item.organization}
+          </motion.p>
+          
+          {item.points.length > 0 ? (
+            <ul className="space-y-3 text-text-secondary group-hover:text-text-primary transition-colors duration-300">
+              {item.points.map((point, i) => (
+                <motion.li 
+                  key={i} 
+                  className="flex items-start text-sm sm:text-base leading-relaxed"
+                  initial={{ opacity: 0, x: -20 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: i * 0.1 }}
+                  viewport={{ once: true }}
+                >
+                  <div className="w-2 h-2 bg-accent-1 rounded-full mr-3 mt-2 flex-shrink-0 animate-pulse"></div>
+                  <span>{point}</span>
+                </motion.li>
+              ))}
+            </ul>
+          ) : (
+            <p className="text-text-secondary/80 italic text-sm sm:text-base">
+              Details forthcoming.
+            </p>
+          )}
+        </motion.div>
+      </motion.div>
+    ));
   };
 
   return (
@@ -59,10 +179,43 @@ const Experience = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <div className="relative">
-          <SectionTitle id="experience-title">Achievements & Leadership</SectionTitle>
+          <SectionTitle id="experience-title">Experience & Achievements</SectionTitle>
           
           {/* Floating NEW Achievement Notification */}
-        
+          <motion.div
+            className="absolute top-0 right-0 md:right-8 lg:right-16"
+            initial={{ opacity: 0, y: -20, scale: 0.8 }}
+            whileInView={{ opacity: 1, y: 0, scale: 1 }}
+            viewport={{ once: true }}
+            transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
+          >
+            <motion.div
+              className="bg-gradient-to-r from-accent-1/10 to-accent-2/10 backdrop-blur-sm border border-accent-1/30 rounded-lg px-4 py-2 shadow-lg"
+              animate={{ 
+                y: [0, -5, 0],
+                boxShadow: [
+                  "0 4px 20px rgba(0, 245, 195, 0.2)",
+                  "0 8px 30px rgba(0, 245, 195, 0.3)",
+                  "0 4px 20px rgba(0, 245, 195, 0.2)"
+                ]
+              }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            >
+              <div className="flex items-center gap-2 text-accent-1">
+                <motion.span
+                  animate={{ rotate: [0, 10, -10, 0] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="text-lg"
+                >
+                  🏆
+                </motion.span>
+                <div className="text-sm font-mono">
+                  <div className="font-bold">Latest Achievement!</div>
+                  <div className="text-xs text-text-secondary">SIH 2025 Grand Finalist</div>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
         </div>
 
         <div className="relative max-w-6xl mx-auto mt-16">
@@ -75,18 +228,18 @@ const Experience = () => {
             style={{ height: progressHeight }}
           />
           
-          {/* Timeline dots */}
-          <div className="absolute left-[calc(2rem-4px)] sm:left-[calc(2.5rem-4px)] top-0 h-full">
-            {achievementsAndLeadership.map((_, index) => (
+          {/* Timeline dots - Fixed size to be proportional to timeline pipe */}
+          <div className="absolute left-[calc(2rem-2px)] sm:left-[calc(2.5rem-2px)] top-0 h-full">
+            {[...workExperience, ...achievementsAndLeadership].map((_, index) => (
               <motion.div
                 key={index}
-                className="absolute w-3 h-3 bg-accent-1 rounded-full border-2 border-primary-bg shadow-lg"
-                style={{ top: `${(index + 1) * (100 / (achievementsAndLeadership.length + 1))}%` }}
+                className="absolute w-1.5 h-1.5 bg-accent-1 rounded-full border border-primary-bg shadow-sm"
+                style={{ top: `${(index + 1) * (100 / ([...workExperience, ...achievementsAndLeadership].length + 1))}%` }}
                 initial={{ scale: 0, opacity: 0 }}
                 whileInView={{ 
                   scale: 1, 
                   opacity: 1,
-                  boxShadow: "0 0 20px rgba(0, 245, 195, 0.6)"
+                  boxShadow: "0 0 8px rgba(0, 245, 195, 0.4)"
                 }}
                 transition={{ 
                   delay: index * 0.2 + 0.5,
@@ -96,125 +249,50 @@ const Experience = () => {
                 }}
                 viewport={{ once: true }}
                 whileHover={{ 
-                  scale: 1.5,
-                  boxShadow: "0 0 30px rgba(0, 245, 195, 0.8)"
+                  scale: 2,
+                  boxShadow: "0 0 12px rgba(0, 245, 195, 0.6)"
                 }}
               />
             ))}
           </div>
 
-          {achievementsAndLeadership.map((item, index) => (
-            <motion.div
-              key={index}
-              className="mb-12 flex items-start"
-              custom={index}
-              variants={experienceItemVariants}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.3 }}
+          {/* Work Experience Section */}
+          <div className="mb-16">
+            <motion.h2 
+              className="text-2xl sm:text-3xl font-bold text-accent-1 font-mono mb-8 flex items-center gap-3 ml-20 sm:ml-24"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
             >
-              {/* Enhanced Icon */}
-              <motion.div 
-                className="flex-shrink-0 w-16 h-16 sm:w-20 sm:h-20 bg-primary-bg rounded-full border-3 border-accent-1 flex items-center justify-center mr-6 sm:mr-8 relative z-10 shadow-xl"
-                whileHover={{ 
-                  scale: 1.1, 
-                  rotate: 360,
-                  boxShadow: "0 0 30px rgba(0, 245, 195, 0.5)"
-                }}
-                transition={{ duration: 0.5 }}
-              >
-                <div className="relative z-10">
-                  {getIcon(item.role)}
-                </div>
-              </motion.div>
+              <FaLaptopCode className="text-accent-2" />
+              Work Experience
+            </motion.h2>
+            {renderTimelineSection(workExperience, true, 0)}
+          </div>
 
-              {/* Enhanced Content Card */}
-              <motion.div 
-                className={`group flex-grow p-8 rounded-xl shadow-xl hover:shadow-2xl transition-all duration-500 border ${
-                  item.role.includes('Grand Finalist') 
-                    ? 'bg-gradient-to-br from-primary-bg to-accent-1/5 border-accent-1/50 hover:border-accent-1' 
-                    : 'bg-primary-bg border-transparent hover:border-accent-1/30'
-                }`}
-                whileHover={{ 
-                  y: -5, 
-                  scale: 1.02,
-                  boxShadow: item.role.includes('Grand Finalist') 
-                    ? "0 20px 40px rgba(0, 245, 195, 0.25)" 
-                    : "0 20px 40px rgba(0, 245, 195, 0.15)"
-                }}
-              >
-                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4">
-                  <div className="flex items-center gap-3">
-                    <motion.h3 
-                      className={`text-xl sm:text-2xl lg:text-2xl font-bold font-mono group-hover:scale-105 transition-transform duration-300 ${
-                        item.role.includes('Grand Finalist') ? 'text-accent-1' : 'text-accent-1'
-                      }`}
-                      whileHover={{ scale: 1.05 }}
-                    >
-                      {item.role}
-                    </motion.h3>
-                    {item.role.includes('Grand Finalist') && (
-                      <motion.div
-                        className="relative px-3 py-1 bg-gradient-to-r from-accent-1/20 to-accent-2/20 text-accent-1 text-xs font-bold rounded-full border border-accent-1/50 overflow-hidden"
-                        animate={{ 
-                          boxShadow: [
-                            "0 0 0px rgba(0, 245, 195, 0.4)",
-                            "0 0 20px rgba(0, 245, 195, 0.6)",
-                            "0 0 0px rgba(0, 245, 195, 0.4)"
-                          ]
-                        }}
-                        transition={{ duration: 2, repeat: Infinity }}
-                        whileHover={{ scale: 1.1 }}
-                      >
-                        <motion.div
-                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
-                          animate={{ x: ['-100%', '100%'] }}
-                          transition={{ duration: 2, repeat: Infinity, ease: "linear" }}
-                        />
-                        <span className="relative z-10">NEW</span>
-                      </motion.div>
-                    )}
-                  </div>
-                  <p className={`text-sm font-mono px-3 py-1 rounded-full mt-2 sm:mt-0 ${
-                    item.role.includes('Grand Finalist') 
-                      ? 'text-accent-1 bg-accent-1/10 border border-accent-1/30' 
-                      : 'text-text-secondary bg-secondary-bg/50'
-                  }`}>
-                    {item.duration}
-                  </p>
-                </div>
-                
-                <motion.p 
-                  className="text-lg text-accent-2 font-bold mb-4 group-hover:text-accent-1 transition-colors duration-300"
-                  whileHover={{ scale: 1.02 }}
-                >
-                  {item.organization}
-                </motion.p>
-                
-                {item.points.length > 0 ? (
-                  <ul className="space-y-3 text-text-secondary group-hover:text-text-primary transition-colors duration-300">
-                    {item.points.map((point, i) => (
-                      <motion.li 
-                        key={i} 
-                        className="flex items-start text-sm sm:text-base leading-relaxed"
-                        initial={{ opacity: 0, x: -20 }}
-                        whileInView={{ opacity: 1, x: 0 }}
-                        transition={{ delay: i * 0.1 }}
-                        viewport={{ once: true }}
-                      >
-                        <div className="w-2 h-2 bg-accent-1 rounded-full mr-3 mt-2 flex-shrink-0 animate-pulse"></div>
-                        <span>{point}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
-                ) : (
-                  <p className="text-text-secondary/80 italic text-sm sm:text-base">
-                    Details forthcoming.
-                  </p>
-                )}
-              </motion.div>
-            </motion.div>
-          ))}
+          {/* Section Divider */}
+          <motion.div 
+            className="relative mb-16"
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            viewport={{ once: true }}
+          >
+            <div className="absolute left-20 sm:left-24 right-0 h-px bg-gradient-to-r from-accent-1/30 via-accent-2/20 to-transparent"></div>
+          </motion.div>
+
+          {/* Achievements & Leadership Section */}
+          <div>
+            <motion.h2 
+              className="text-2xl sm:text-3xl font-bold text-accent-1 font-mono mb-8 flex items-center gap-3 ml-20 sm:ml-24"
+              initial={{ opacity: 0, x: -20 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              viewport={{ once: true }}
+            >
+              <FaTrophy className="text-accent-2" />
+              Achievements & Leadership
+            </motion.h2>
+            {renderTimelineSection(achievementsAndLeadership, false, workExperience.length)}
+          </div>
         </div>
       </div>
     </section>
