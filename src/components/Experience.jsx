@@ -181,41 +181,7 @@ const Experience = () => {
         <div className="relative">
           <SectionTitle id="experience-title">Experience & Achievements</SectionTitle>
           
-          {/* Floating NEW Achievement Notification */}
-          <motion.div
-            className="absolute top-0 right-0 md:right-8 lg:right-16"
-            initial={{ opacity: 0, y: -20, scale: 0.8 }}
-            whileInView={{ opacity: 1, y: 0, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.5, duration: 0.6, type: "spring" }}
-          >
-            <motion.div
-              className="bg-gradient-to-r from-accent-1/10 to-accent-2/10 backdrop-blur-sm border border-accent-1/30 rounded-lg px-4 py-2 shadow-lg"
-              animate={{ 
-                y: [0, -5, 0],
-                boxShadow: [
-                  "0 4px 20px rgba(0, 245, 195, 0.2)",
-                  "0 8px 30px rgba(0, 245, 195, 0.3)",
-                  "0 4px 20px rgba(0, 245, 195, 0.2)"
-                ]
-              }}
-              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
-            >
-              <div className="flex items-center gap-2 text-accent-1">
-                <motion.span
-                  animate={{ rotate: [0, 10, -10, 0] }}
-                  transition={{ duration: 2, repeat: Infinity }}
-                  className="text-lg"
-                >
-                  🏆
-                </motion.span>
-                <div className="text-sm font-mono">
-                  <div className="font-bold">Latest Achievement!</div>
-                  <div className="text-xs text-text-secondary">SIH 2025 Grand Finalist</div>
-                </div>
-              </div>
-            </motion.div>
-          </motion.div>
+       
         </div>
 
         <div className="relative max-w-6xl mx-auto mt-16">
