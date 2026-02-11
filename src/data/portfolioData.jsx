@@ -29,7 +29,7 @@ export const personalInfo = {
   email: "niteshtiwari0234@gmail.com",
   linkedin: "https://linkedin.com/in/niteshtiwari29",
   github: "https://github.com/nitesh2920",
-  resumeLink: "/Nitesh_Tiwari.pdf",
+  resumeLink: "/NiteshTiwari_FullStack.pdf",
   bio: "Innovative Full Stack Developer passionate about creating seamless and impactful web solutions. Eager to leverage modern technologies to solve real-world problems and contribute to dynamic team environments.",
   shortBio: "I build things for the web."
 };
