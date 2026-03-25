@@ -38,7 +38,7 @@ const Hero = () => {
       </div>
       
       <motion.div
-        className="container mx-auto mt-9 px-4 sm:px-6 lg:px-8 text-center relative z-10 pt-7"
+        className="container mx-auto mt-9 px-4 sm:px-6 lg:px-8 text-center relative z-10 pt-7 pb-24"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -50,7 +50,7 @@ const Hero = () => {
         >
           <button
             onClick={() => scrollToElement('experience')}
-            className="inline-flex items-center gap-3 bg-gradient-to-r from-accent-1/10 via-accent-2/10 to-accent-1/10 backdrop-blur-sm border border-accent-1/30 rounded-full px-6 py-3 shadow-lg cursor-pointer transition-all duration-200 hover:shadow-xl hover:scale-105 relative"
+            className="inline-flex items-center gap-3 bg-gradient-to-r from-accent-1/10 via-accent-2/10 to-accent-1/10 backdrop-blur-sm border border-accent-1/30 rounded-full px-6 py-3 shadow-lg cursor-pointer transition-all duration-200 hover:shadow-xl hover:scale-105 relative z-20"
             title="Click to view all achievements"
           >
             <div className="text-accent-1">
@@ -72,11 +72,12 @@ const Hero = () => {
           </button>
           
           {/* Hover tooltip */}
-          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-secondary-bg text-text-primary px-3 py-1 rounded-lg text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-20">
+          <div className="absolute -bottom-8 left-1/2 transform -translate-x-1/2 bg-secondary-bg text-text-primary px-3 py-1 rounded-lg text-xs font-mono whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none z-30">
             Click to view all achievements
             <div className="absolute -top-1 left-1/2 transform -translate-x-1/2 w-2 h-2 bg-secondary-bg rotate-45"></div>
           </div>
         </motion.div>
+        
         <motion.div variants={itemVariants}>
           <h3 className="text-accent-1 font-mono text-lg md:mt-6 sm:text-xl mb-3">
             Hi, my name is
@@ -86,7 +87,7 @@ const Hero = () => {
             {personalInfo.name}.
           </h1>
           
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-secondary mb-6">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold text-text-secondary mb-6 h-[80px] sm:h-auto">
             <TypeAnimation
               sequence={[
                 'I build things for the web.',
@@ -103,7 +104,7 @@ const Hero = () => {
               wrapper="span"
               speed={50}
               repeat={Infinity}
-              className="font-mono"
+              className="font-mono inline-block"
             />
           </h2>
           
@@ -112,7 +113,7 @@ const Hero = () => {
           </p>
         </motion.div>
 
-        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12">
+        <div className="flex flex-col sm:flex-row justify-center items-center space-y-4 sm:space-y-0 sm:space-x-6 mb-12 relative z-20">
           <button
             onClick={() => scrollToElement('projects')}
             className="px-8 py-4 font-mono text-lg bg-accent-1 text-primary-bg rounded-lg cursor-pointer shadow-lg transition-all duration-200 hover:bg-opacity-90 hover:shadow-xl"
@@ -124,20 +125,20 @@ const Hero = () => {
             href={personalInfo.resumeLink}
             target="_blank"
             rel="noopener noreferrer"
-            className="px-8 py-4 font-mono text-lg border-2 border-accent-1 text-accent-1 rounded-lg hover:bg-accent-1 hover:text-primary-bg transition-all duration-200 flex items-center shadow-lg"
+            className="px-8 py-4 font-mono text-lg border-2 border-accent-1 text-accent-1 rounded-lg hover:bg-accent-1 hover:text-primary-bg transition-all duration-200 flex items-center shadow-lg cursor-pointer"
           >
             <FaDownload className="mr-2" /> Download CV
           </a>
         </div>
 
-        <div className="flex justify-center space-x-8">
+        <div className="flex justify-center space-x-8 relative z-20">
           {Object.values(socialLinks).map((link, index) => (
             <a
               key={index}
               href={link.url}
               target="_blank"
               rel="noopener noreferrer"
-              className="text-text-secondary hover:text-accent-1 transition-colors duration-200 p-2 rounded-full hover:bg-accent-1/10"
+              className="text-text-secondary hover:text-accent-1 transition-colors duration-200 p-2 rounded-full hover:bg-accent-1/10 cursor-pointer"
               aria-label={link.url.split(':')[0]}
             >
               {link.icon}
@@ -147,9 +148,9 @@ const Hero = () => {
       </motion.div>
       
       {/* Scroll indicator */}
-      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2">
+      <div className="absolute bottom-10 left-1/2 transform -translate-x-1/2 z-30">
         <button 
-          onClick={() => scrollToElement('about')}
+          onClick={() => scrollToElement('contact')}
           className="cursor-pointer group flex flex-col items-center"
         >
           <span className="text-accent-1 font-mono text-sm mb-2 group-hover:text-accent-2 transition-colors duration-200">

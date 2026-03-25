@@ -22,19 +22,7 @@ const cardVariants = {
 const About = () => {
   return (
     <section id="about" className="py-20 bg-secondary-bg relative overflow-hidden">
-      {/* Background decoration */}
-      <div className="absolute inset-0 overflow-hidden opacity-5">
-        <motion.div
-          className="absolute top-20 right-20 w-32 h-32 border border-accent-1 rounded-full"
-          animate={{ rotate: 360 }}
-          transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-        />
-        <motion.div
-          className="absolute bottom-20 left-20 w-24 h-24 border border-accent-2 rounded-full"
-          animate={{ rotate: -360 }}
-          transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-        />
-      </div>
+
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <SectionTitle id="about-title">About Me</SectionTitle>
