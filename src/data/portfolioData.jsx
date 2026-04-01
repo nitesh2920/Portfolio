@@ -18,10 +18,12 @@ import {
   SiCplusplus,
   SiPostman,
   SiShadcnui,
-  SiPostgresql
+  SiPostgresql,
+  SiFramer
 } from "react-icons/si";
 
 import { RiNextjsFill } from "react-icons/ri";
+import { Activity, Lock, Database } from "lucide-react";
 
 export const personalInfo = {
   name: "Nitesh Tiwari",
@@ -56,6 +58,35 @@ export const education = [
 ];
 
 export const projects = [
+  {
+    title: "Chatter",
+    tech: ["Next.js", "Clerk", "Convex", "Tailwind CSS", "Shadcn UI"],
+    description:
+      "A real-time chat application featuring live online notifications, typing indicators, and message reactions. Built with Next.js for the frontend, Clerk for secure authentication, and Convex as the real-time backend and database.",
+    date: "Feb 2025",
+    githubLink: "https://github.com/nitesh2920/Chatter",
+    liveLink: "https://chatter-lyart.vercel.app",
+    category: "FullStack",
+    icon: <RiNextjsFill size={24} className="text-accent-1" />
+  },
+  {
+    title: "Physio Landing Page",
+    tech: [
+      "Next.js 16",
+      "React 19",
+      "Tailwind CSS v4",
+      "Framer Motion",
+      "Lenis",
+      "TypeScript"
+    ],
+    description:
+      "A premium 'Quiet Luxury' physiotherapy landing page featuring scroll-linked animations, parallax effects, and high-performance smooth scrolling with Lenis. Developed with Next.js 16 and React 19 for a modern, SEO-optimized experience.",
+    date: "Feb 2025",
+    githubLink: "https://github.com/nitesh2920/physiotherapyLandingPage",
+    liveLink: "https://physiotherapy-landing-page.vercel.app/",
+    category: "Frontend",
+    icon: <RiNextjsFill size={24} className="text-accent-1" />
+  },
   {
     title: "PrepSphere AI",
     tech: ["NextJs", "NeonDb", "tailwindcss", "shadcn", "Drizzle", "inngest"],
@@ -177,13 +208,15 @@ export const skills = {
     { name: "Next JS", icon: <RiNextjsFill /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss /> },
     { name: "Shadcn ui", icon: <SiShadcnui /> },
+    { name: "Framer Motion", icon: <SiFramer /> },
     { name: "Bootstrap", icon: <FaBootstrap /> }
   ],
 
   toolsAndPlatforms: [
     { name: "MongoDB", icon: <SiMongodb /> },
     { name: "PostgreSQL", icon: <SiPostgresql /> },
-
+    { name: "Convex", icon: <Database /> },
+    { name: "Clerk", icon: <Lock /> },
     { name: "Firebase", icon: <SiFirebase /> },
     { name: "Git & GitHub", icon: <FaGithub /> },
     { name: "VS Code", icon: <FaCode /> },
